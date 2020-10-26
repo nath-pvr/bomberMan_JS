@@ -70,10 +70,10 @@ h1{
     position: relative;
     background-color:#2a2b2c;
     border: 1rem ridge orangered;
-    top: 3rem!important;
-    left: 42rem;   
-    width: 60rem;
-    height: 60rem;
+    left: 50%;   
+    transform: translate(-50%,0);
+    width: 62.5rem;
+    height: 62.5rem;
 }
 
 #player{
@@ -220,8 +220,13 @@ h1{
     height:1.5rem;
 }
 
+.b5{
+    width: 11.5rem;
+    height:1.5rem;
+}
+
 .b6{
-    width:  4rem;
+    width:  14.4rem;
     height:1.5rem;
 }
 
@@ -241,7 +246,7 @@ h1{
 }
 
 .b10{
-    width:  4rem;
+    width:  24rem;
     height:1.5rem;
 }
 
