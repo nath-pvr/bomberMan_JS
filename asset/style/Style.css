@@ -85,7 +85,10 @@ h1{
     border-radius: 50%;
     background-image: url("../image/Jack.png");
     background-position: cover;
-    transform: translate(-7.5%,-7.5%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-57.5%,-57.5%);
+   
 }
 
 .ennemis{
@@ -101,6 +104,7 @@ h1{
     background-image: url('../image/Jack2.png');
     width: 2.5rem;
     height: 2.5rem;
+    transform: translate(-50%,-50%);
      
 }
 .mur{
