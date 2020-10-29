@@ -4,64 +4,71 @@ let player = document.querySelector('#player');
 console.log(player);
 
 let xPosition;
-let yPositon;
+let yPosition;
 
+let arrMove = ["up","down","left","right"];
 
-
+/* debut gestion des deplacements et action du joueur */
 // declaration of 4 deplacement functions
-
-function left() {
-    let hLimit = getLimit();
-    /* je récupère la position de l'objet player*/
-    x = getComputedStyle(player).left;
-    /* je transpose x en integer */
-    x = parseInt(x);
-
-    if (x> hLimit.start){
-    x = x - 25;
-    /* je déclare que la valeur de x = integer + px */
-    xPosition = x + "px";
-    /* j'applique le style left à l'objet player */
-    player.style.left = xPosition;
-    }
+function getPosition(element, property){
+    return parseInt(window.getComputedStyle(element).getPropertyValue(property));
 }
 
-function right() {
-    let hLimit = getLimit();
-    console.log(hLimit);
-    x = getComputedStyle(player).left;
-    x = parseInt(x);
+function move(element, direction){
 
-    if (x < hLimit.end){
-    x = x + 25;
-    xPosition = x + "px";
-    player.style.left = xPosition;
-    }    
-}
-
-function up() {
-    let vLimit = getLimit("V"); 
-    y = getComputedStyle(player).top;
-    y = parseInt(y);
-
-    if (y > vLimit.start){
-    y = y - 25;
-    yPositon = y + "px";
-    player.style.top = yPositon;
-    }  
-}
-
-function down() {
+    let left = getPosition(element,"left");
+    let up = getPosition(element, "top");
     let vLimit = getLimit("V");
-    y = getComputedStyle(player).top;
-    y = parseInt(y);
+    let hLimit = getLimit("H");
 
-    if (y < vLimit.end){
-    y = y + 25;
-    yPositon = y + "px";
-    player.style.top = yPositon;
+    switch (direction) {
+        
+        case "up":
+            
+            if (up > vLimit.start){
+                up -=  25;
+            element.style.top = up + "px";
+        
+            }
+            break;
+
+        case "down":
+            
+            if (up < vLimit.end){
+                up +=  25;
+        console.log(up);
+            element.style.top = up + "px";
+        console.log(element.style.top);
+            }
+            break;
+
+        case "left":
+            
+            if (left > hLimit.start){
+        console.log(hLimit.start);
+                left -=  25;
+        console.log(left);
+            element.style.left = left + "px";
+        console.log(element.style.left);
+            }
+            break;
+        
+        case "right":
+            
+            if (left < hLimit.end){
+        console.log(hLimit.end);
+                left +=  25;
+            element.style.left = left + "px";
+        console.log(element.style.left);
+            }
+            break;
+    
+        
     }
+
 }
+
+
 
 // programation of arrow directed
 
@@ -73,26 +80,30 @@ window.addEventListener("keydown", function (event) {
         case "ArrowUp":
         case "z":
             
-            up();         
-            break;
+           move(player,"up");
+
+        break;
 
         case "ArrowDown":
         case "s":
-            down();
-            getLimit("V");
-            break;
+            
+            move(player,"down");
+            
+        break;
 
         case "ArrowLeft":
         case "q":
-            left();
-            break;
+            move(player,"left");
+        break;
 
         case "ArrowRight":
         case "d":
-            right();
-            break;
+            move(player,"right");
+        break;
 
         case " ":
+            createBomber();
+        break;
     }
 });
 
@@ -115,3 +126,43 @@ function getLimit(sType) {
     }
     return limit;
 }
+
+/* fin gestion deplacement et action du joueur */
+
+
+/* début génération des bombes et ennemis */
+
+function createBomber(){
+
+   let bombe = document.createElement("div");
+   bombe.classList = "bombe";
+   bombe.style.up = yPosition;
+   bombe.style.left = xPosition;
+   map_bg.append(bombe);
+
+   setTimeout(() => {
+       bombe.remove();
+   }, 2300);
+}
+
+
+function createEnnemy(){
+    let ennemyNbr = 4;
+    for ( let i = 0; i < ennemyNbr; i++){
+        let ennemy = document.createElement("div");
+        ennemy.classList = "ennemis";
+        map_bg.append(ennemy);
+    }
+
+    let randPosition = document.getElementsByClassName('ennemis');
+    for ( let i= 0; i < randPosition.length; i++){
+        randPosition[i].style.left = Math.floor(Math.random()*25)*2.5 + 'rem';
+        randPosition[i].style.up = Math.floor(Math.random()*25)*2.5 + 'rem';
+        randPosition[i].style.windth = 2.5 + "rem";
+        randPosition[i].style.height = 2.5 + "rem";
+    
+    }
+}
+
+createEnnemy();
+/* fin génération des bombes et ennemis */

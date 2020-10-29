@@ -77,18 +77,32 @@ h1{
 }
 
 #player{
+    z-index: 9;
     margin: 0.25rem;
     position: absolute;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
-    background-image: url("../image/jack_face.png");
-    background-position: contain;
-    background-color: whitesmoke;
-    border: 1px solid black;
+    background-image: url("../image/Jack.png");
+    background-position: cover;
     transform: translate(-7.5%,-7.5%);
 }
 
+.ennemis{
+    position: absolute;
+    background-image: url(../image/oogie.png);
+    background-position: cover;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.bombe{
+    position: absolute;
+    background-image: url('../image/Jack2.png');
+    width: 2.5rem;
+    height: 2.5rem;
+     
+}
 .mur{
     position: absolute;
     background-color: rgb(200, 60, 10);
@@ -96,6 +110,7 @@ h1{
 }
 
 /* cadrillage */
+.l0{top: 0}
 
 .l1{top: 2.5rem;}
 
@@ -118,6 +133,8 @@ h1{
 .l11{top: 27.5rem;}
 
 .l12{top: 30rem;}
+
+.l24{bottom: 0;}
 
 .l23{bottom: 2.5rem;}
 
