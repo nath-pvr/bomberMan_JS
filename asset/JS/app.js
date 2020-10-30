@@ -1,7 +1,6 @@
 let map_bg = document.querySelector('#mapBg');
-console.log(map_bg);
+
 let player = document.querySelector('#player');
-console.log(player);
 
 let playerMove = false;
 
@@ -110,8 +109,6 @@ window.addEventListener("keydown", function (event) {
             break;
     }
 
-    console.log(getPosition(player, "top"));
-    console.log(getPosition(player, "left"));
 });
 
 
@@ -148,6 +145,8 @@ setInterval(function () {
 
 /* début génération des bombes et ennemis */
 
+
+
 function createBomber() {
 
     let bombe = document.createElement("div");
@@ -155,11 +154,30 @@ function createBomber() {
     bombe.style.top = getPosition(player, "top") + "px";
     bombe.style.left = getPosition(player, "left") + "px";
     map_bg.append(bombe);
+    
+       setTimeout(() => {
+        bombe.remove();
+    }, 2500);
+
+    function explosion(){
+
+        let explosion = document.createElement("div");
+        explosion.classList= "explosion";
+        explosion.style.top = getPosition(bombe,"top") + "px";
+        explosion.style.left = getPosition(bombe,"left") + "px";
+        map_bg.append(explosion);
+        setTimeout(() => {
+            explosion.remove();
+        }, 2000);
+    };
 
     setTimeout(() => {
-        bombe.remove();
-    }, 2000);
+        explosion();
+    }, 2400);
+
 }
+
+
 
 
 function createEnnemy() {

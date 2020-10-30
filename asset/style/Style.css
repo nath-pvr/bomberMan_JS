@@ -107,6 +107,16 @@ h1{
     transform: translate(-50%,-50%);
      
 }
+
+.explosion{
+    position: absolute;
+    background-image: url('../image/explosion.png');
+    background-position: cover;
+    background-repeat: no-repeat;
+    width: 7.5rem;
+    height: 7.5rem;
+    transform: translate(-42.5%,-50%);
+}
 .mur{
     position: absolute;
     background-color: rgb(200, 60, 10);
